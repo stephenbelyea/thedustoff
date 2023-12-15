@@ -10,7 +10,7 @@ To run the site locally, use:
 npm install && npm start
 ```
 
-From there, you can open the site in your browser at [localhost:3000/](http://localhost:3000/).
+From there, you can open the site in your browser at [localhost:3000](http://localhost:3000/).
 
 ## What's up next
 

@@ -39,7 +39,7 @@ const buildFeedItem = (item) => {
 
   const feedItemContent = [
     `<h2><a href="#${id}">${title}</a></h2>`,
-    `<p class="date">${date}</p>`,
+    `<p class="date"><strong>${date}</strong></p>`,
     `<p class="description">${description}</p>`,
   ];
 
@@ -50,9 +50,20 @@ const buildFeedItem = (item) => {
   return feedItem;
 };
 
+const buildFeedSummary = (items) => {
+  const summary = document.createElement("p");
+  summary.textContent = `${items.length} episodes in total.`;
+  summary.setAttribute("id", "summary");
+  return summary;
+};
+
 const buildFeedList = async () => {
   const feed = await getParsedFeed();
   const items = feed.getElementsByTagName("item");
+
+  const feedSummary = buildFeedSummary(items);
+  feedContainer.appendChild(feedSummary);
+
   for (let i = 0; i < items.length; i++) {
     const feedItem = buildFeedItem(items[i]);
     feedContainer.appendChild(feedItem);

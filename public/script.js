@@ -57,7 +57,7 @@ const buildFeedItem = (item) => {
     `<img src="${image}" alt="" />`,
     // `<div class="player">${player}</div>`,
     `<h2><a href="#${id}">${title}</a></h2>`,
-    `<p class="date">${date}</p>`,
+    `<p class="date"><strong>${date}</strong></p>`,
     `<p class="description">${description}</p>`,
   ];
 
@@ -70,7 +70,7 @@ const buildFeedItem = (item) => {
 
 const buildFeedSummary = (items) => {
   const summary = document.createElement("p");
-  summary.textContent = `${items.length} episodes in total.`;
+  summary.textContent = `Originally aired ${items.length} episodes from 2016-2018.`;
   summary.setAttribute("id", "summary");
   return summary;
 };

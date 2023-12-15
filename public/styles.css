@@ -1,5 +1,20 @@
+:root {
+  --color-body: #4c4c4c;
+  --color-special: crimson;
+  --font-weight-body: 300;
+  --font-weight-bold: 700;
+  --font-weight-mega: 900;
+}
+
+html {
+  font-size: 110%;
+}
+
 body {
-  line-height: 1.35;
+  font-family: "Lato", sans-serif;
+  font-weight: var(--font-weight-body);
+  line-height: 1.65;
+  color: var(--color-body);
 }
 
 main {
@@ -8,9 +23,41 @@ main {
   margin: 0 auto;
 }
 
+h1,
+h2,
+a {
+  color: var(--color-special);
+}
+
+h1 {
+  font-weight: var(--font-weight-mega);
+  font-size: 3rem;
+  margin: 0.5em 0;
+}
+
+h2,
+strong,
+a {
+  font-weight: var(--font-weight-bold);
+}
+
+a:focus,
+a:hover {
+  color: black;
+}
+
+h2 {
+  margin: 0.5rem 0 1rem;
+}
+
+p {
+  margin: 0.75rem 0;
+}
+
 article {
   margin: 2.5rem 0;
-  border: solid 0.1em black;
+  border: solid 0.1em var(--color-body);
+  border-radius: 0.25rem;
   padding: 1.5rem;
 }
 
@@ -19,13 +66,8 @@ article img {
   height: auto;
 }
 
-article h2 {
-  margin: 0.5rem 0;
-}
-
 article .date {
-  font-weight: bold;
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   margin: 0.5rem 0 1rem;
 }
 
@@ -38,10 +80,11 @@ article audio {
   width: 100%;
 }
 
-article .description {
-}
-
 footer {
   text-align: center;
   margin: 2rem auto;
+}
+
+footer p {
+  margin: 0.25rem 0;
 }

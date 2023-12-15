@@ -27,19 +27,32 @@ const getFeedItemDateText = (item) => {
   return `Released ${formatDate}`;
 };
 
+const getFeedItemMp3 = (item) =>
+  item.querySelector("enclosure").getAttribute("url");
+
 const getFeedItemData = (item) => ({
   id: getFeedItemId(item),
   title: getTagText(item, "title"),
   date: getFeedItemDateText(item),
   description: getTagText(item, "description"),
+  mp3: getFeedItemMp3(item),
 });
 
+const buildAudioPlayer = (mp3) =>
+  [
+    `<audio controls src=${mp3}>`,
+    `<a href="${mp3}">Download episode</a>`,
+    `</audio>`,
+  ].join("");
+
 const buildFeedItem = (item) => {
-  const { id, title, date, description } = getFeedItemData(item);
+  const { id, title, date, description, mp3 } = getFeedItemData(item);
+  const player = buildAudioPlayer(mp3);
 
   const feedItemContent = [
     `<h2><a href="#${id}">${title}</a></h2>`,
-    `<p class="date"><strong>${date}</strong></p>`,
+    `<p class="date">${date}</p>`,
+    `<div class="player">${player}</div>`,
     `<p class="description">${description}</p>`,
   ];
 

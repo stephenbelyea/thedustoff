@@ -1,9 +1,47 @@
-#wrap {
+body {
+  line-height: 1.35;
+}
+
+main {
   width: 92vw;
   max-width: 40rem;
   margin: 0 auto;
 }
 
 article {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
+  border: solid 0.1em black;
+  padding: 1.5rem;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+}
+
+article h2 {
+  margin: 0.5rem 0;
+}
+
+article .date {
+  font-weight: bold;
+  font-size: 1.15rem;
+  margin: 0.5rem 0 1rem;
+}
+
+article .player {
+  margin: -0.45rem 0 1.5rem;
+  position: relative;
+}
+
+article audio {
+  width: 100%;
+}
+
+article .description {
+}
+
+footer {
+  text-align: center;
+  margin: 2rem auto;
 }

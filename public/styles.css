@@ -1,5 +1,6 @@
 :root {
   --color-body: #4c4c4c;
+  --color-border: #dfcece;
   --color-special: crimson;
   --font-weight-body: 300;
   --font-weight-bold: 700;
@@ -7,19 +8,27 @@
 }
 
 html {
-  font-size: 110%;
+  font-size: 100%;
 }
 
 body {
+  color: var(--color-body);
   font-family: "Lato", sans-serif;
   font-weight: var(--font-weight-body);
   line-height: 1.65;
-  color: var(--color-body);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 main {
   width: 92vw;
-  max-width: 40rem;
+  max-width: 105rem;
+  margin: 0 auto;
+}
+
+.intro,
+footer {
+  max-width: 45rem;
   margin: 0 auto;
 }
 
@@ -31,7 +40,7 @@ a {
 
 h1 {
   font-weight: var(--font-weight-mega);
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 0.5em 0;
 }
 
@@ -47,18 +56,30 @@ a:hover {
 }
 
 h2 {
+  font-size: 1.25rem;
   margin: 0.5rem 0 1rem;
+  line-height: 1.35;
 }
 
 p {
   margin: 0.75rem 0;
 }
 
+#feed {
+  margin: 3rem 0;
+}
+
 article {
-  margin: 2.5rem 0;
-  border: solid 0.1em var(--color-body);
+  margin: 1rem 0;
+  border: solid 0.1em var(--color-border);
   border-radius: 0.25rem;
-  padding: 1.5rem;
+  padding: 1rem 1rem 0.5rem;
+  box-sizing: border-box;
+  box-shadow: 0 0.1rem 0.5rem var(--color-border);
+}
+
+article:first-of-type {
+  margin-top: 2.5rem;
 }
 
 article img {
@@ -67,7 +88,6 @@ article img {
 }
 
 article .date {
-  font-size: 1.125rem;
   margin: 0.5rem 0 1rem;
 }
 
@@ -82,9 +102,68 @@ article audio {
 
 footer {
   text-align: center;
-  margin: 2rem auto;
+  margin: 5rem auto 1.5rem;
 }
 
 footer p {
   margin: 0.25rem 0;
+  font-size: 0.825rem;
+}
+
+@media (min-width: 550px) {
+  html {
+    font-size: 110%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (min-width: 700px) {
+  main {
+    width: 96vw;
+  }
+
+  #feed {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  article {
+    margin: 0 !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  #feed {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  footer p {
+    font-size: 0.925rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  html {
+    font-size: 115%;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
 }

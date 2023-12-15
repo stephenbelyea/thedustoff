@@ -3,3 +3,7 @@
   max-width: 40rem;
   margin: 0 auto;
 }
+
+article {
+  margin: 2rem 0;
+}

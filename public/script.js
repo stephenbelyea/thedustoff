@@ -27,21 +27,20 @@ const getFeedItemDateText = (item) => {
   return `Released ${formatDate}`;
 };
 
-const getFeedItemData = (item) => {
-  const feedItemData = {
-    id: getFeedItemId(item),
-    title: getTagText(item, "title"),
-    dateText: getFeedItemDateText(item),
-  };
-  return feedItemData;
-};
+const getFeedItemData = (item) => ({
+  id: getFeedItemId(item),
+  title: getTagText(item, "title"),
+  date: getFeedItemDateText(item),
+  description: getTagText(item, "description"),
+});
 
 const buildFeedItem = (item) => {
-  const { id, title, dateText } = getFeedItemData(item);
+  const { id, title, date, description } = getFeedItemData(item);
 
   const feedItemContent = [
     `<h2><a href="#${id}">${title}</a></h2>`,
-    `<p class="date">${dateText}</p>`,
+    `<p class="date">${date}</p>`,
+    `<p class="description">${description}</p>`,
   ];
 
   const feedItem = document.createElement("article");

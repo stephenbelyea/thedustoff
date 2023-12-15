@@ -1,0 +1,12 @@
+{
+  "name": "thedustoff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx serve public"
+  },
+  "author": "",
+  "license": "ISC"
+}

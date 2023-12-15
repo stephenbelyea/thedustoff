@@ -57,9 +57,11 @@ const buildFeedItem = (item) => {
   const feedItemContent = [
     `<img src="${image}" alt="" />`,
     // `<div class="player">${player}</div>`,
+    `<div class="inner">`,
     `<h2><a href="#${id}">${title}</a></h2>`,
     `<p class="date"><strong>${date}</strong></p>`,
     `<p class="description">${description}</p>`,
+    `</div>`,
   ];
 
   const feedItem = document.createElement("article");

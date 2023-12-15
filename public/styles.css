@@ -1,6 +1,7 @@
 :root {
   --color-body: #4c4c4c;
   --color-border: #dfcece;
+  --color-shadow: #fbe0e0;
   --color-special: crimson;
   --font-weight-body: 300;
   --font-weight-bold: 700;
@@ -50,6 +51,10 @@ a {
   font-weight: var(--font-weight-bold);
 }
 
+a {
+  transition: color 150ms;
+}
+
 a:focus,
 a:hover {
   color: black;
@@ -70,12 +75,22 @@ p {
 }
 
 article {
+  overflow: hidden;
   margin: 1rem 0;
-  border: solid 0.1em var(--color-border);
+  border: solid 0.125em var(--color-border);
   border-radius: 0.25rem;
-  padding: 1rem 1rem 0.5rem;
   box-sizing: border-box;
-  box-shadow: 0 0.1rem 0.5rem var(--color-border);
+  box-shadow: 0 0.1rem 0.5rem var(--color-shadow);
+  transition: box-shadow 150ms;
+}
+
+article .inner {
+  padding: 0.35rem 1rem 0.75rem;
+}
+
+article:focus-within,
+article:hover {
+  box-shadow: 0 0.1rem 0.75rem var(--color-border);
 }
 
 article:first-of-type {
@@ -122,6 +137,10 @@ footer p {
   h2 {
     font-size: 1.35rem;
   }
+
+  .intro p {
+    font-size: 1.125rem;
+  }
 }
 
 @media (min-width: 700px) {
@@ -145,6 +164,10 @@ footer p {
     font-size: 2.75rem;
   }
 
+  .intro p {
+    font-size: 1.175rem;
+  }
+
   #feed {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -165,5 +188,13 @@ footer p {
 
   h2 {
     font-size: 1.5rem;
+  }
+
+  #feed {
+    gap: 1.5rem;
+  }
+
+  article .inner {
+    padding: 0.5rem 1.5rem 1rem;
   }
 }

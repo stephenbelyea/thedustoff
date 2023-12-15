@@ -1,4 +1,5 @@
 const feedContainer = document.getElementById("feed");
+const summaryBlock = document.getElementById("summary");
 
 const getParsedFeed = async () => {
   try {
@@ -80,7 +81,7 @@ const buildFeedList = async () => {
   const items = feed.getElementsByTagName("item");
 
   const feedSummary = buildFeedSummary(items);
-  feedContainer.appendChild(feedSummary);
+  summaryBlock.appendChild(feedSummary);
 
   for (let i = 0; i < items.length; i++) {
     const feedItem = buildFeedItem(items[i]);

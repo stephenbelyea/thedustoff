@@ -10,26 +10,39 @@ const getParsedFeed = async () => {
   }
 };
 
+const getTagText = (item, tagName) => item.querySelector(tagName).textContent;
+
 const getFeedItemId = (item) => {
-  const linkParts = item
-    .querySelector("link")
-    .textContent.split("/")
+  const linkParts = getTagText(item, "link")
+    .split("/")
     .filter((part) => part !== "");
   return linkParts[linkParts.length - 1];
+};
+
+const getFeedItemDateText = (item) => {
+  const date = new Date(getTagText(item, "pubDate"));
+  const formatDate = new Intl.DateTimeFormat("en-CA", {
+    dateStyle: "long",
+  }).format(date);
+  return `Released ${formatDate}`;
 };
 
 const getFeedItemData = (item) => {
   const feedItemData = {
     id: getFeedItemId(item),
-    title: item.querySelector("title").textContent,
+    title: getTagText(item, "title"),
+    dateText: getFeedItemDateText(item),
   };
   return feedItemData;
 };
 
 const buildFeedItem = (item) => {
-  const { id, title } = getFeedItemData(item);
+  const { id, title, dateText } = getFeedItemData(item);
 
-  const feedItemContent = [`<h2><a href="#${id}">${title}</a></h2>`];
+  const feedItemContent = [
+    `<h2><a href="#${id}">${title}</a></h2>`,
+    `<p class="date">${dateText}</p>`,
+  ];
 
   const feedItem = document.createElement("article");
   feedItem.innerHTML = feedItemContent.join("");

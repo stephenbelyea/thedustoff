@@ -1,5 +1,6 @@
 :root {
   --color-body: #4c4c4c;
+  --color-light: #6e6a6a;
   --color-border: #dfcece;
   --color-shadow: #fbe0e0;
   --color-special: crimson;
@@ -86,6 +87,15 @@ article {
 article audio {
   background: var(--color-special);
   border-top: solid 0.1em black;
+}
+
+article .unavailable {
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  color: var(--color-light);
+  padding: 0 1rem;
+  margin-top: 0.25em;
 }
 
 article .inner {

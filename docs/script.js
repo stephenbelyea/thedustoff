@@ -48,7 +48,8 @@ const getFeedItemData = (item) => ({
 });
 
 const buildAudioPlayer = (mp3) => {
-  if (mp3 === "") return "";
+  if (mp3 === "")
+    return `<p class="unavailable">Sorry, this episode is not currently available.</p>`;
   return [
     `<audio controls preload="metadata">`,
     `<source src="${mp3}" type="audio/mpeg" />`,

@@ -18,8 +18,8 @@ This is still an early version, built in one evening care of [Storyteller Lager]
 
 Stuff that still needs to be done:
 
-- Migrate MP3s from WordPress and DigitalOcean
-- Repair audio player elements for each post
-- Migrate episode images over from WordPress
+- Migrate MP3s from WordPress and DigitalOcean (In progress)
+- Repair audio player elements for each post (In progress)
+- ~~Migrate episode images over from WordPress~~ (Done!)
 - Render full episode details when selected
 - Add the show logo and additional details

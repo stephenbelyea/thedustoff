@@ -28,8 +28,12 @@ const getFeedItemDateText = (item) => {
   return `Released ${formatDate}`;
 };
 
-const getFeedItemMp3 = (item) =>
-  item.querySelector("enclosure").getAttribute("url");
+const getFeedItemMp3 = (item) => {
+  const enclosure = item.querySelector("enclosure");
+  return enclosure.getAttribute("data-file") === "dropbox"
+    ? enclosure.getAttribute("url")
+    : "";
+};
 
 const getFeedItemImage = (item) =>
   item.getElementsByTagName("itunes:image")[0].getAttribute("href");
@@ -43,12 +47,15 @@ const getFeedItemData = (item) => ({
   image: getFeedItemImage(item),
 });
 
-const buildAudioPlayer = (mp3) =>
-  [
-    `<audio controls src=${mp3}>`,
+const buildAudioPlayer = (mp3) => {
+  if (mp3 === "") return "";
+  return [
+    `<audio controls preload="metadata">`,
+    `<source src="${mp3}" type="audio/mpeg" />`,
     `<a href="${mp3}">Download episode</a>`,
     `</audio>`,
   ].join("");
+};
 
 const buildFeedItem = (item) => {
   const { id, title, date, description, mp3, image } = getFeedItemData(item);
@@ -56,11 +63,12 @@ const buildFeedItem = (item) => {
 
   const feedItemContent = [
     `<img src="${image}" alt="" />`,
-    // `<div class="player">${player}</div>`,
+    `<div class="player">${player}</div>`,
     `<div class="inner">`,
     `<h2><a href="#${id}">${title}</a></h2>`,
     `<p class="date"><strong>${date}</strong></p>`,
     `<p class="description">${description}</p>`,
+    `<p class="download"><a href="${mp3}">Download episode</a></p>`,
     `</div>`,
   ];
 

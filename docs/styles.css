@@ -89,15 +89,6 @@ article audio {
   border-top: solid 0.1em black;
 }
 
-article .unavailable {
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-  color: var(--color-light);
-  padding: 0 1rem;
-  margin-top: 0.25em;
-}
-
 article .inner {
   padding: 0.35rem 1rem 0.75rem;
 }
@@ -116,21 +107,40 @@ article img {
   height: auto;
 }
 
-article .meta {
+.meta {
+  font-weight: bold;
   margin: 0.5rem 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
-article .player {
+.unavailable {
+  font-style: italic;
+  color: var(--color-light);
+  padding: 0 1rem;
+  margin-top: 0.5em;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.2rem;
+}
+
+.meta-item img {
+  width: 1.5rem;
+}
+
+.player {
   margin: -0.45rem 0 0.5rem;
   position: relative;
 }
 
 article audio {
   width: 100%;
-}
-
-article .download > a[href=""] {
-  display: none;
 }
 
 footer {

@@ -55,9 +55,21 @@ const getFeedItemData = (item) => ({
   duration: getTagText(item, "itunes:duration"),
 });
 
+const buildMetaItem = (icon, alt, meta) =>
+  [
+    `<span class="meta-item">`,
+    `<img src="./icons/${icon}.svg" alt="${alt}" />`,
+    `<span>${meta}</span>`,
+    `</span>`,
+  ].join("");
+
 const buildAudioPlayer = (mp3) => {
   if (mp3 === "")
-    return `<p class="unavailable">Sorry, this episode is not currently available.</p>`;
+    return `<p class="meta unavailable">${buildMetaItem(
+      "headset",
+      "",
+      "Episode currently unavailable"
+    )}</p>`;
   return [
     `<audio controls preload="metadata">`,
     `<source src="${mp3}" type="audio/mpeg" />`,
@@ -77,12 +89,17 @@ const buildFeedItem = (item) => {
     `<div class="inner">`,
     `<h2><a href="#${id}">${title}</a></h2>`,
     `<p class="meta">`,
-    `<span>Duration: <strong>${duration}</strong></span>`,
-    `<span aria-hidden="true"> | </span>`,
-    `<span>Released: <strong>${date}</strong></span>`,
+    buildMetaItem("calendar", "Release date", date),
+    buildMetaItem("timer", "Episode duration", duration),
+    mp3
+      ? buildMetaItem(
+          "download",
+          "Download file",
+          `<a href="${mp3}">Download</a>`
+        )
+      : "",
     `</p>`,
     `<p class="description">${description}</p>`,
-    `<p class="download"><a href="${mp3}">Download episode</a></p>`,
     `</div>`,
   ];
 

@@ -11,7 +11,12 @@ const getParsedFeed = async () => {
   }
 };
 
-const getTagText = (item, tagName) => item.querySelector(tagName).textContent;
+const getTagByName = (item, tagName) =>
+  tagName.includes(":")
+    ? item.getElementsByTagName(tagName)[0]
+    : item.querySelector(tagName);
+
+const getTagText = (item, tagName) => getTagByName(item, tagName).textContent;
 
 const getFeedItemId = (item) => {
   const linkParts = getTagText(item, "link")
@@ -23,20 +28,22 @@ const getFeedItemId = (item) => {
 const getFeedItemDateText = (item) => {
   const date = new Date(getTagText(item, "pubDate"));
   const formatDate = new Intl.DateTimeFormat("en-CA", {
-    dateStyle: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   }).format(date);
-  return `Released ${formatDate}`;
+  return formatDate;
 };
 
 const getFeedItemMp3 = (item) => {
-  const enclosure = item.querySelector("enclosure");
+  const enclosure = getTagByName(item, "enclosure");
   return enclosure.getAttribute("data-file") === "dropbox"
     ? enclosure.getAttribute("url")
     : "";
 };
 
 const getFeedItemImage = (item) =>
-  item.getElementsByTagName("itunes:image")[0].getAttribute("href");
+  getTagByName(item, "itunes:image").getAttribute("href");
 
 const getFeedItemData = (item) => ({
   id: getFeedItemId(item),
@@ -45,6 +52,7 @@ const getFeedItemData = (item) => ({
   description: getTagText(item, "description"),
   mp3: getFeedItemMp3(item),
   image: getFeedItemImage(item),
+  duration: getTagText(item, "itunes:duration"),
 });
 
 const buildAudioPlayer = (mp3) => {
@@ -59,7 +67,8 @@ const buildAudioPlayer = (mp3) => {
 };
 
 const buildFeedItem = (item) => {
-  const { id, title, date, description, mp3, image } = getFeedItemData(item);
+  const { id, title, date, description, mp3, image, duration } =
+    getFeedItemData(item);
   const player = buildAudioPlayer(mp3);
 
   const feedItemContent = [
@@ -67,7 +76,11 @@ const buildFeedItem = (item) => {
     `<div class="player">${player}</div>`,
     `<div class="inner">`,
     `<h2><a href="#${id}">${title}</a></h2>`,
-    `<p class="date"><strong>${date}</strong></p>`,
+    `<p class="meta">`,
+    `<span>Duration: <strong>${duration}</strong></span>`,
+    `<span aria-hidden="true"> | </span>`,
+    `<span>Released: <strong>${date}</strong></span>`,
+    `</p>`,
     `<p class="description">${description}</p>`,
     `<p class="download"><a href="${mp3}">Download episode</a></p>`,
     `</div>`,

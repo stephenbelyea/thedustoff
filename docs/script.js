@@ -1,5 +1,4 @@
 const feedContainer = document.getElementById("feed");
-const summaryBlock = document.getElementById("summary");
 
 const getParsedFeed = async () => {
   try {
@@ -110,19 +109,9 @@ const buildFeedItem = (item) => {
   return feedItem;
 };
 
-const buildFeedSummary = (items) => {
-  const summary = document.createElement("p");
-  summary.textContent = `Originally aired ${items.length} episodes from 2016-2018.`;
-  summary.setAttribute("id", "summary");
-  return summary;
-};
-
 const buildFeedList = async () => {
   const feed = await getParsedFeed();
   const items = feed.getElementsByTagName("item");
-
-  const feedSummary = buildFeedSummary(items);
-  summaryBlock.appendChild(feedSummary);
 
   for (let i = 0; i < items.length; i++) {
     const feedItem = buildFeedItem(items[i]);

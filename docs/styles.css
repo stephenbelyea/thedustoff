@@ -1,4 +1,5 @@
 :root {
+  --color-bg: #2b2727;
   --color-body: #4c4c4c;
   --color-light: #6e6a6a;
   --color-border: #dfcece;
@@ -14,6 +15,7 @@ html {
 }
 
 body {
+  margin: 0;
   color: var(--color-body);
   font-family: "Lato", sans-serif;
   font-weight: var(--font-weight-body);
@@ -22,16 +24,35 @@ body {
   width: 100%;
 }
 
-main {
-  width: 92vw;
-  max-width: 105rem;
+section {
+  padding: 2rem 0;
+}
+
+section:first-of-type {
+  padding-top: 0.5rem;
+}
+
+section:last-of-type {
+  padding-bottom: 1.5rem;
+}
+
+section.feed {
+  background: var(--color-bg);
+}
+
+article {
+  background: white;
+}
+
+.section-inner {
+  max-width: 45rem;
   margin: 0 auto;
 }
 
-.intro,
-footer {
-  max-width: 45rem;
-  margin: 0 auto;
+#feed {
+  width: 92vw;
+  max-width: 105rem;
+  margin: 1.5rem auto;
 }
 
 h1,
@@ -42,6 +63,7 @@ a {
 
 h1 {
   font-weight: var(--font-weight-mega);
+  text-align: center;
   font-size: 2rem;
   margin: 0.5em 0;
 }
@@ -71,8 +93,14 @@ p {
   margin: 0.75rem 0;
 }
 
-#feed {
-  margin: 3rem 0;
+blockquote {
+  padding: 0.75rem 1rem 1.5rem 1.25rem;
+  margin: 1.5rem auto 2rem;
+  width: 86%;
+  font-size: 1.375rem;
+  font-style: italic;
+  line-height: 1.75;
+  border-left: solid 0.5rem var(--color-border);
 }
 
 article {
@@ -80,8 +108,7 @@ article {
   margin: 1rem 0;
   border-radius: 0.35rem;
   box-sizing: border-box;
-  box-shadow: 0 0.1rem 0.5rem var(--color-border);
-  transition: box-shadow 150ms;
+  box-shadow: 0 0.1rem 0.5rem black;
 }
 
 article audio {
@@ -91,11 +118,6 @@ article audio {
 
 article .inner {
   padding: 0.35rem 1rem 1rem;
-}
-
-article:focus-within,
-article:hover {
-  box-shadow: 0 0.1rem 0.75rem var(--color-border);
 }
 
 article:first-of-type {
@@ -175,11 +197,8 @@ footer p {
 }
 
 @media (min-width: 700px) {
-  main {
-    width: 96vw;
-  }
-
   #feed {
+    width: 96vw;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
